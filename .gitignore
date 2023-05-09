@@ -1,0 +1,10 @@
+/shelf/
+/workspace.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+/target
+/src/result
+/src/test/java/kp/outputfile
+*.log

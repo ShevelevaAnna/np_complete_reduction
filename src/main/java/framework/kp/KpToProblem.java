@@ -45,9 +45,24 @@ class KpToProblem extends LoggerProvider {
         logInfo("Создание объекта задачи коммивояжера через сведение задачи о рюкзаке");
         int countVertexes = 2 * kp.getMaxWeight() - 1;
         ArrayList<ArrayList<Double>> paths = createInfPath(countVertexes);
+        int index = 1;
+        while (kp.getThings().size() != index) {
+            if(kp.getThings().get(index).weight() == kp.getThings().get(index - 1).weight()) {
+                if (kp.getThings().get(index).cost() > kp.getThings().get(index - 1).cost()) {
+                    kp.getThings().remove(index - 1);
+                }
+                else {
+                    kp.getThings().remove(index);
+                }
+            }
+            else {
+                index++;
+            }
+        }
+        System.out.println(kp.getThings());
 
         for(int j = 0; j < kp.getMaxWeight(); j++) {
-            for(int i = 0; i < kp.getNumberOfThings(); i++) {
+            for(int i = 0; i < kp.getThings().size(); i++) {
                 if(j + kp.getWeightThing(i) < kp.getMaxWeight() + 1) {
                     paths
                         .get(j)

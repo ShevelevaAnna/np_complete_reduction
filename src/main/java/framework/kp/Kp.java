@@ -105,15 +105,29 @@ public class Kp extends LoggerProvider {
         super(Kp.class);
         logInfo("Заполнение рандомными значениями объекта задачи о рюкзаке ");
         this.maxWeight = maxKnapsackWeight;
-        this.numberOfThings = numberOfThings;
         things = new ArrayList<>();
         for (int i = 0; i < numberOfThings;  i++) {
             int weight = RandomValueUtils.getIntegerValue(minWeight, maxWeight);
-            double cost = RandomValueUtils.getDoubleValue(minCost, maxCost);
+            double cost = RandomValueUtils.getDoubleValue(minCost, maxCost) * weight;
             int count = RandomValueUtils.getIntegerValue(minCount, maxCount);
             things.add(new KpThing(Integer.toString(i), weight, cost, count));
         }
         things.sort(new ThingsWeightComparator());
+        int index = 1;
+        while (getThings().size() != index) {
+            if(getThings().get(index).weight() == getThings().get(index - 1).weight()) {
+                if (getThings().get(index).cost() > getThings().get(index - 1).cost()) {
+                    getThings().remove(index - 1);
+                }
+                else {
+                    getThings().remove(index);
+                }
+            }
+            else {
+                index++;
+            }
+        }
+        this.numberOfThings = getThings().size();
     }
 
     /**

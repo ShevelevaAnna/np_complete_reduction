@@ -59,7 +59,6 @@ class KpToProblem extends LoggerProvider {
                 index++;
             }
         }
-        System.out.println(kp.getThings());
 
         for(int j = 0; j < kp.getMaxWeight(); j++) {
             for(int i = 0; i < kp.getThings().size(); i++) {

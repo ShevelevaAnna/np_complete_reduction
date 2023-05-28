@@ -92,16 +92,16 @@ public abstract class ExactSolution extends LoggerProvider {
         Supplier<ArrayList<ArrayList<Integer>>> equalFinishSubSolve
     ) {
         logInfo("Точное решение " + problem);
+        long startTime = System.nanoTime();
         GreedyAlgorithm greedyAlgorithm = new GreedyAlgorithm(matrix);
         greedyAlgorithm.findPath();
         minPath = greedyAlgorithm.getMinPath();
         allMinPath = new ArrayList<>();
         allMinPath.add(minPath);
         minCost = greedyAlgorithm.getMinWeight();
-        long startTime = System.currentTimeMillis();
         initSolve(maxStartVertex, noEqualFinishSubSolve, equalFinishSubSolve);
         solveSubProblem.get();
-        time = System.currentTimeMillis() - startTime;
+        time = System.nanoTime() - startTime;
         logInfo(TIME, time/NANO);
     }
 

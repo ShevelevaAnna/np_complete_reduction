@@ -94,7 +94,7 @@ public abstract class ExactSolution extends LoggerProvider {
         logInfo("Точное решение " + problem);
         long startTime = System.nanoTime();
         GreedyAlgorithm greedyAlgorithm = new GreedyAlgorithm(matrix);
-        greedyAlgorithm.findPath();
+        greedyAlgorithm.findPath(matrix.size());
         minPath = greedyAlgorithm.getMinPath();
         allMinPath = new ArrayList<>();
         allMinPath.add(minPath);
